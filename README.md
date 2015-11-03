@@ -61,3 +61,7 @@ PATH | `%PATH%;C:\Qt\qt-4.8.6-x64-msvc2010\qt-4.8.6-x64-msvc2010\bin;C:\dev\Open
 ## Acknowledgements
 
 感谢 LiYinYuan 师姐的参考程序。
+
+## @GitHub
+
+[district10/SignProcessing](https://github.com/district10/SignProcessing)
