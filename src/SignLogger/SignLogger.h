@@ -12,7 +12,7 @@
 #include <QMutex>
 #include "Utils.h"
 
-#define PARTIAL_THRESHOLD ( 0.6 )
+#define PARTIAL_THRESHOLD ( 0.3 )
 
 class Log
 {
@@ -62,7 +62,9 @@ public:
     
     bool load( const QString &logstr ) {
         std::string tmpPath;
-        bool done = ( 4 == scanf( "%d %s %lf %lf %lf %lf", &idx, &tmpPath, &x, &y, &dx, &dy ) );
+        bool done = ( 4 == sscanf( qPrintable(logstr), 
+                                   "%d %s %lf %lf %lf %lf", 
+                                   &idx, &tmpPath, &x, &y, &dx, &dy ) );
         path = QString( tmpPath.c_str() );
         validate();
         return done && isValid();
