@@ -53,12 +53,6 @@ else( OPENMP_FOUND AND WITH_OPENMP )
 	set ( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DMAX_OPENMP_NUM_THREADS=1 -DOPENMP_NUM_THREADS=1" )
 endif( OPENMP_FOUND AND WITH_OPENMP )
 
-# Boost
-set( Boost_USE_STATIC_LIBS OFF )
-set( Boost_USE_MULTITHREAD ON )
-find_package( Boost REQUIRED COMPONENTS filesystem thread )
-message( STATUS "Boost_LIBS: ${Boost_LIBRARIES}" )
-
 # OpenCV 
 find_package( OpenCV REQUIRED )
 
