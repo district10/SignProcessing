@@ -44,7 +44,7 @@ Env | Env Value
 OpenCV | `C:\dev\OpenCV\build`
 OpenCV_Dir | `%OpenCV%`
 QTDIR | `C:\Qt\qt-4.8.6-x64-msvc2010\qt-4.8.6-x64-msvc2010`
-PATH | `%PATH%;C:\Qt\qt-4.8.6-x64-msvc2010\qt-4.8.6-x64-msvc2010\bin;C:\dev\OpenCV\build\build\x64\vc10\bin;`
+PATH | `%PATH%;%QTDIR%\bin;%OpenCV%\x64\vc10\bin;`
 
 ## 成员
 
