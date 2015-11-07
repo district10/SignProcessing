@@ -14,6 +14,12 @@
 
 ，其中红色为切片选区，绿色为正样本区域，蓝色为负样本区域。
 
+## 说明文档
+
+<http://gnat.qiniudn.com/homework/SignProcessing_README.pdf>
+
+![](http://gnat.qiniudn.com/homework/SignProcessing_demo.png)
+
 ## 模块
 
 包括：
