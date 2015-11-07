@@ -18,7 +18,9 @@
 
 <http://gnat.qiniudn.com/homework/SignProcessing_README.pdf>
 
-![](http://gnat.qiniudn.com/homework/SignProcessing_demo.png)
+![](http://gnat.qiniudn.com/homework/SignProcessing_demo_b.jpg)
+
+![](http://gnat.qiniudn.com/homework/SignProcessing_demo_a.bmp)
 
 ## 模块
 
