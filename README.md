@@ -29,7 +29,7 @@
 * SignCutter（路牌提取）
 * SignTransformer（直接对切片区域变换：平移、镜像、旋转）
 * SignLogger（记录切片区域，在原图上变换，效果更好）
-* SignClassifier（分类）
+* SignClassifier（分类） &rarr; 相关笔记：[OpenCV::CvANN_MLP](http://tangzx.qiniudn.com/post-0072-cvann-mlp.html)
 * etc.
 
 ## Binary Release
