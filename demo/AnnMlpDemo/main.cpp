@@ -3,9 +3,65 @@
 #include <opencv2/ml/ml.hpp>
 #include <iostream>
 #include <string>
+#include <QDateTime>
+#include <QtGui>
+#include <QHash>
 
 using namespace std;
 using namespace cv;
+
+enum Pattern {
+    Circle,
+    Square,
+};
+
+enum {
+    Width = 100,
+    Height = 100,
+    PatternSize = 60,
+    TrainSize = 200,
+};
+
+bool isPos( const int &x, const int &y, Pattern pattern = Circle )
+{
+    return ( qAbs<int>(x - Width/2) < PatternSize / 2 &&
+             qAbs<int>(y - Height/2) < PatternSize / 2 );
+}
+
+void pattern( Mat &data, Mat &labels, QHash<int, QPair<int, int> > &pts, Pattern pattern = Circle )
+{
+    qsrand( QDateTime::currentMSecsSinceEpoch() );
+
+    float trainingData[TrainSize][2];
+    float trainingLabels[TrainSize][1];
+    pts.clear();
+
+    // QHash<int, QPair<int, int> > pts;
+    for ( int i = 0; i < TrainSize; ++i ) {
+        int x, y;
+        do {
+            x = qrand() % Height;
+            y = qrand() % Width;
+        } while ( pts.values().contains( QPair<int, int>(x, y) ) );
+        pts.insert( i, QPair<int, int>(x, y) );
+
+        trainingData[i][0] = x;
+        trainingData[i][1] = y;
+        /*
+        if ( ( qPow((x - Width/2), 2)
+             + qPow((y - Height/2), 2) ) < qPow(PatternSize/2, 2) ) {
+             */
+        if ( qAbs<int>(x - Width/2) < PatternSize / 2 &&
+             qAbs<int>(y - Height/2) < PatternSize / 2 ) {
+            trainingLabels[i][0] =  1;
+        } else {
+            trainingLabels[i][0] = -1;
+        } 
+    }
+
+    data = Mat( TrainSize, 2, CV_32FC1, trainingData );
+    labels = Mat( TrainSize, 1, CV_32FC1, trainingLabels );
+}
 
 int main()
 {
@@ -61,8 +117,8 @@ int main()
     //      CvANN_MLP::GAUSSIAN
     // * fparam1 ¨C Free parameter of the activation function, \alpha
     // * fparam2 ¨C Free parameter of the activation function, \beta
-    Mat layerSizes=(Mat_<int>(1,5) << 5,2,2,2,5);
-    bp.create( layerSizes, CvANN_MLP::SIGMOID_SYM );
+    bp.create( ( Mat_<int>(1,5) << 2, 4, 6, 4, 1),
+                CvANN_MLP::SIGMOID_SYM );
 
     // int CvANN_MLP::train(const Mat& inputs,
     //                      const Mat& outputs,
@@ -71,39 +127,24 @@ int main()
     //                      CvANN_MLP_TrainParams params=CvANN_MLP_TrainParams(),
     //                      int flags=0 )
 
-    float trainingData[3][5] = {
-        {   1,   2,   3,   4,  5 },
-        { 111, 112, 113, 114, 115},
-        {  21,  22,  23,  24,  25},
-    };
-    Mat trainingDataMat(3, 5, CV_32FC1, trainingData);
-
-    float labels[3][5] = {
-        { 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0 },
-        { 1, 1, 1, 1, 1 },
-    };
-    Mat labelsMat(3, 5, CV_32FC1, labels);
-
-    bp.train( trainingDataMat, labelsMat, Mat(), Mat(), params );
+    Mat data, labels;
+    QHash<int, QPair<int, int> > pts;
+    pattern( data, labels, pts );
+    bp.train( data, labels, Mat(), Mat(), params );
 
     // Data for visual representation
-    int width = 512, height = 512;
-    Mat image = Mat::zeros( height, width, CV_8UC3 );
-    Vec3b green( 0, 255, 0 ), blue ( 255, 0, 0 );
+    Mat image = Mat::zeros( Width, Height, CV_8UC3 );
+    Vec3b green( 0, 0, 0 ), blue ( 0, 0, 0 );
 
     // Show the decision regions given by the SVM
     for ( int i = 0; i < image.rows; ++i ) {
         for ( int j = 0; j < image.cols; ++j ) {
-            Mat sampleMat = (Mat_<float>(1,5) << i,j,0,0,0);
+            Mat sampleMat = (Mat_<float>(1,2) << i,j);
             Mat responseMat;
             bp.predict( sampleMat, responseMat );
             float *p = responseMat.ptr<float>(0);
-            float response = 0.0f;
-            for( int k=0; k < 5; k++ ) {
-                response += p[k];
-            }
-            if ( response > 2 ) {
+            qDebug() << *p;
+            if ( *p > 0 ) {
                 image.at<Vec3b>(j, i)  = green;
             } else {
                 image.at<Vec3b>(j, i)  = blue;
@@ -112,14 +153,15 @@ int main()
     }
 
     // Show the training data
-    int thickness = -1;
-    int lineType = 8;
-    circle( image, Point(501,  10), 5, Scalar(  0,   0,   0), thickness, lineType);
-    circle( image, Point(255,  10), 5, Scalar(255, 255, 255), thickness, lineType);
-    circle( image, Point(501, 255), 5, Scalar(255, 255, 255), thickness, lineType);
-    circle( image, Point( 10, 501), 5, Scalar(255, 255, 255), thickness, lineType);
+    for ( int i = 0; i < TrainSize; ++i ) {
+        QPair<int, int> pt = pts.value( i );
+        circle( image, Point( pt.first, pt.second), 5, 
+                isPos( pt.first, pt.second )
+                ? Scalar(0,0,255)
+                : Scalar(0,255,0) );  
+    }
 
-    imwrite("result.png", image);        // save the image
-    imshow("BP Simple Example", image); // show it to the user
+    imwrite("result.png", image);
+    imshow("BP Simple Example", image);
     cvWaitKey(0);
 }
