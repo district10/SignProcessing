@@ -56,19 +56,19 @@ PATH | `%PATH%;%QTDIR%\bin;%OpenCV%\x64\vc10\bin;`
 
 ## 成员
 
-* 组长：ZhaoPengcheng
+* 组长：ZHAO PengCheng
 * 成员：（拼音排序）
-    + Guochen
-    + Liaoyanyan
-    + Liuxuan
-    + TangZhixiong
-    + WangJinyi
-    + ZhangYuan
-    + ZhaoPengcheng
+    + GUO Chen
+    + LIAO YanYan
+    + LIU Xuan
+    + TANG ZhiXiong
+    + WANG JinYi
+    + ZHANG Yuan
+    + ZHAO PengCheng
 
 ## Acknowledgements
 
-感谢 LiYinYuan 师姐的参考程序。
+感谢 LI YinXuan 师姐的参考程序。
 
 ## @GitHub
 
