@@ -53,19 +53,19 @@ QStringList SignTransformer::processSign(const QString &path)
 
 void SignTransformer::showImage(const QString &path)
 {
-	if ( Utils::isPicture( path ) && !pixmap.load( path ) ) {
+    if ( Utils::isPicture( path ) && !pixmap.load( path ) ) {
         scene.clear();
         qDebug() << "error loading image.";
         return;
     }
 
-	int vw = ui->graphicsView_ws->width();
-	int vh = ui->graphicsView_ws->height();
+    int vw = ui->graphicsView_ws->width();
+    int vh = ui->graphicsView_ws->height();
 
-	if ( (double)pixmap.height()/(double)vh > (double)pixmap.width()/(double)vw ) {
-		pixmap = pixmap.scaledToHeight(vh);
+    if ( (double)pixmap.height()/(double)vh > (double)pixmap.width()/(double)vw ) {
+        pixmap = pixmap.scaledToHeight(vh);
     } else {
-		pixmap = pixmap.scaledToWidth(vw);
+        pixmap = pixmap.scaledToWidth(vw);
     }
 
     scene.setSceneRect( 0, 0, pixmap.width(), pixmap.height() );
@@ -363,7 +363,7 @@ void SignTransformer::on_listView_outs_clicked(const QModelIndex &index)
 
 void SignTransformer::on_pushButton_out_dir_clicked()
 {
-	outdir = QFileDialog::getExistingDirectory( this, 
+    outdir = QFileDialog::getExistingDirectory( this, 
                                                 tr( "Save File Directory" ),
                                                 DEFAULT_OUTPUT_IMAGE_DIR,
                                                 QFileDialog::ShowDirsOnly | 

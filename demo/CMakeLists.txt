@@ -1,2 +1,5 @@
+add_subdirectory( AnnMlpDemo )
+add_subdirectory( LetterRecogDemo )
+add_subdirectory( SignClassifierDemo )
 add_subdirectory( SignCutterDemo )
 add_subdirectory( SignTransformerDemo )

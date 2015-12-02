@@ -5,63 +5,63 @@ const QChar Utils::sep = QChar('/');
 
 QString Utils::strippedName( const QString &fullFileName, QString &fileDir )
 {
-	fileDir = QFileInfo( fullFileName ).absolutePath();
-	return QFileInfo( fullFileName ).fileName();
+    fileDir = QFileInfo( fullFileName ).absolutePath();
+    return QFileInfo( fullFileName ).fileName();
 }
 
 bool Utils::isPicture( const QString &fileName )
 {
-	if( 
+    if( 
         fileName.endsWith( ".jpg",  Qt::CaseInsensitive ) ||
         fileName.endsWith( ".bmp",  Qt::CaseInsensitive ) ||
-		fileName.endsWith( ".png",  Qt::CaseInsensitive ) || 
+        fileName.endsWith( ".png",  Qt::CaseInsensitive ) || 
         fileName.endsWith( ".gif",  Qt::CaseInsensitive ) ||
-		fileName.endsWith( ".jpeg", Qt::CaseInsensitive ) || 
+        fileName.endsWith( ".jpeg", Qt::CaseInsensitive ) || 
         fileName.endsWith( ".pgm",  Qt::CaseInsensitive ) ||
-		fileName.endsWith( ".ppm",  Qt::CaseInsensitive ) || 
+        fileName.endsWith( ".ppm",  Qt::CaseInsensitive ) || 
         fileName.endsWith( ".tif",  Qt::CaseInsensitive ) ||
-		fileName.endsWith( ".tiff", Qt::CaseInsensitive ) || 
+        fileName.endsWith( ".tiff", Qt::CaseInsensitive ) || 
         fileName.endsWith( ".xbm",  Qt::CaseInsensitive ) ||
-		fileName.endsWith( ".tiff", Qt::CaseInsensitive ) || 
+        fileName.endsWith( ".tiff", Qt::CaseInsensitive ) || 
         fileName.endsWith( ".xpm",  Qt::CaseInsensitive ) ||
-		fileName.endsWith( ".pbm",  Qt::CaseInsensitive ) || 
+        fileName.endsWith( ".pbm",  Qt::CaseInsensitive ) || 
         fileName.endsWith( ".xbm",  Qt::CaseInsensitive ) 
        ) {
-		return true;
+        return true;
     } else {
-		return false;	
+        return false;	
     }
 }
 
 QStringList Utils::openMultipleFiles( const QString &filter, QWidget *widget )
 {
-	QStringList fileNames;
+    QStringList fileNames;
 
-	QFileDialog::Options options;
-	options |= QFileDialog:: DontUseNativeDialog;
+    QFileDialog::Options options;
+    options |= QFileDialog:: DontUseNativeDialog;
 
-	fileNames = QFileDialog::getOpenFileNames( widget,
+    fileNames = QFileDialog::getOpenFileNames( widget,
                                                QObject::tr( "select multiple image files" ),
                                                DEFAULT_INPUT_IMAGE_DIR,  // entry dir
                                                filter,                   // filter
                                                (QString *)0,             // selected filter
                                                options );
-	return fileNames;
+    return fileNames;
 }
 
 
 static QFileInfoList getFilOfDir( const QString &dirPath )
 {
-	QFileInfoList fil;
+    QFileInfoList fil;
 
-	QDir dir = Utils::transferDirectory( dirPath );
-	QString path = dir.path();
+    QDir dir = Utils::transferDirectory( dirPath );
+    QString path = dir.path();
 
-	if( !dir.exists() ) {
-		return fil;
+    if( !dir.exists() ) {
+        return fil;
     }
-	
-	fil = dir.entryInfoList( QDir::Dirs
+    
+    fil = dir.entryInfoList( QDir::Dirs
                            | QDir::Files
                            | QDir::Readable
                            | QDir::Writable
@@ -72,76 +72,76 @@ static QFileInfoList getFilOfDir( const QString &dirPath )
 
 bool Utils::deleteFolderContent( const QString &dirPath, bool deleteFolder /* = false */ )
 {
-	QDir dir = transferDirectory(dirPath);
-	QString path = dir.path();
+    QDir dir = transferDirectory(dirPath);
+    QString path = dir.path();
 
-	QFileInfoList fil = getFilOfDir( dirPath );
+    QFileInfoList fil = getFilOfDir( dirPath );
 
-	QFileInfo curFile;
-	
-	if( !dir.exists() ) {
-		return true;
+    QFileInfo curFile;
+    
+    if( !dir.exists() ) {
+        return true;
     }
-	
-	while( fil.size() > 0 ) {
-		int infoNum = fil.size();
-		for( int i = infoNum-1; i >= 0; --i ) {
-			curFile = fil[i];
+    
+    while( fil.size() > 0 ) {
+        int infoNum = fil.size();
+        for( int i = infoNum-1; i >= 0; --i ) {
+            curFile = fil[i];
             fil.removeAt( i );
-			
-			if ( curFile.isFile() ) {
+            
+            if ( curFile.isFile() ) {
 
                 // remove file
-				QFile fileTemp( curFile.filePath() );
-				fileTemp.remove();
+                QFile fileTemp( curFile.filePath() );
+                fileTemp.remove();
 
-			} else if( curFile.isDir() ) {
+            } else if( curFile.isDir() ) {
 
                 // append files in dir
                 fil.append( getFilOfDir( curFile.filePath() ) );
 
-			} else {
+            } else {
 
                 qDebug() << "I have no idea what's going on...";
 
             }
-		}
-	}
-
-	if ( deleteFolder && fil.size() == 0 ) {
-		dir.rmdir( path );
+        }
     }
 
-	return ( fil.size() == 0 );
+    if ( deleteFolder && fil.size() == 0 ) {
+        dir.rmdir( path );
+    }
+
+    return ( fil.size() == 0 );
 }
 
 bool Utils::makeFolder( const QString &folderName )
 {
-	QDir dir = QDir::current();
-	dir.cdUp();
+    QDir dir = QDir::current();
+    dir.cdUp();
 
-	if ( dir.exists(folderName) ) {
-		deleteFolderContent( folderName );
-	}
+    if ( dir.exists(folderName) ) {
+        deleteFolderContent( folderName );
+    }
     
     return dir.mkdir( folderName );
 }
 
 QDir Utils::transferDirectory( const QString &folderName )
 {
-	QDir dir = QDir::current();
-	dir.cdUp();
-	return QDir( dir.path() + sep + folderName );
+    QDir dir = QDir::current();
+    dir.cdUp();
+    return QDir( dir.path() + sep + folderName );
 }
 
 QString Utils::joinPath( const QString &dirPath, const QString &basename )
 {
-	QString joinedPath = dirPath;
+    QString joinedPath = dirPath;
 
-	if ( dirPath.right(1) == sep ) {
-		joinedPath.chop( 1 );
+    if ( dirPath.right(1) == sep ) {
+        joinedPath.chop( 1 );
     }
-	return joinedPath + sep + basename;
+    return joinedPath + sep + basename;
 }
 
 QStringList Utils::basename( const QStringList &paths )

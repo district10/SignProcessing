@@ -7,3 +7,4 @@ install_manifest.txt
 data/neg/*
 data/pos/*
 data/sgn/*
+build/
