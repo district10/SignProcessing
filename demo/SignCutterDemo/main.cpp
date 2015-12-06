@@ -8,9 +8,9 @@ int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
 
-	SignCutter signCutter;
+    SignCutter signCutter;
     signCutter.setBaseDir( Utils::dirname( QString(argv[0]) ) );
     signCutter.show();
 
-	return app.exec();
+    return app.exec();
 }
