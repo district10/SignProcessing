@@ -1,22 +1,10 @@
 # SignProcessing
 
-# 效果
-
-输入图片为
-
-![](./data/in.jpg)
-
-输出到 sgn（路牌切片）、pos（正样本）、neg（负样本）三个文件夹内。（见 `data` 文件夹）
-
-切片选取位置参考
-
-![](./data/out.bmp)
-
-，其中红色为切片选区，绿色为正样本区域，蓝色为负样本区域。
+利用 Qt、OpenCV 程序库，进行路牌的扣取、分类和识别。使用 ANN::MLP（神经网络 - 多层感知器）方法。
 
 ## 说明文档
 
-<http://gnat.qiniudn.com/homework/SignProcessing_README.pdf>
+PDF：<http://gnat.qiniudn.com/homework/SignProcessing_README.pdf>
 
 ![](http://gnat.qiniudn.com/homework/SignProcessing_demo_b.jpg)
 
