@@ -1,6 +1,7 @@
 # SignProcessing
 
 利用 Qt、OpenCV 程序库，进行路牌的扣取、分类和识别。使用 ANN::MLP（神经网络 - 多层感知器）方法。
+（这里的训练、分类的代码暂时不能用；另一部分用 VS2013 建立的工程并没有整合过来。）
 
 ## 说明文档
 
@@ -9,6 +10,8 @@ PDF：<http://gnat.qiniudn.com/homework/SignProcessing_README.pdf>
 ![](http://gnat.qiniudn.com/homework/SignProcessing_demo_b.jpg)
 
 ![](http://gnat.qiniudn.com/homework/SignProcessing_demo_a.bmp)
+
+![](http://whudoc.qiniudn.com/2016/annlau-ppt.png)
 
 ## 模块
 
