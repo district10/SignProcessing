@@ -1,6 +1,6 @@
 # SignProcessing2
 
-看我的博客：[用 CvANN_MLP 进行路牌判别](file:///D:/tzx/git/blog/publish/post-0072-cvann-mlp.html)。
+看我的博客：[用 CvANN_MLP 进行路牌判别](http://tangzx.qiniudn.com/post-0072-cvann-mlp.html)。
 
 ## 下载已经编译好的程序
 
