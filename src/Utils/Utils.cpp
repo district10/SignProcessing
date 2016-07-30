@@ -270,10 +270,10 @@ bool Utils::img2feature( const char *filePath, float *feature )
         return false;
     }
 
-    int rowCountR[IMGSIZE]={0}, rowCountG[IMGSIZE]={0}, rowCountB[IMGSIZE]={0};
-    int colCountR[IMGSIZE]={0}, colCountG[IMGSIZE]={0}, colCountB[IMGSIZE]={0};
-    int allCountR=0, allCountG=0, allCountB=0;
-    int tempR[4] = { 0 }, tempG[4] = { 0 }, tempB[4] = { 0 };
+    int allCountR          =   0  , allCountG          =   0  , allCountB          =   0  ;
+    int rowCountR[IMGSIZE] = { 0 }, rowCountG[IMGSIZE] = { 0 }, rowCountB[IMGSIZE] = { 0 };
+    int colCountR[IMGSIZE] = { 0 }, colCountG[IMGSIZE] = { 0 }, colCountB[IMGSIZE] = { 0 };
+    int tempR[4]           = { 0 }, tempG[4]           = { 0 }, tempB[4]           = { 0 };
 
     for( int i = 0; i < IMGSIZE; ++i ) {
         for( int j = 0; j < IMGSIZE; ++j ) {
@@ -281,6 +281,10 @@ bool Utils::img2feature( const char *filePath, float *feature )
             int b = img.at<cv::Vec3b>(i,j)[0];
             int g = img.at<cv::Vec3b>(i,j)[1];
             int r = img.at<cv::Vec3b>(i,j)[2];
+
+            allCountR += r;
+            allCountG += g;
+            allCountB += b;
 
             rowCountR[i] += r;
             rowCountG[i] += g;
@@ -290,15 +294,6 @@ bool Utils::img2feature( const char *filePath, float *feature )
             colCountG[j] += g;
             colCountB[j] += b;
 
-            allCountR += r;
-            allCountG += g;
-            allCountB += b;
-
-            /*
-             *     0 | 1
-             *     --+--
-             *     2 | 3
-            */
             int index = 2 * (i < IMGSIZE / 2 ? 0 : 1) + (j < IMGSIZE / 2 ? 0 : 1);
             tempR[index] += r;
             tempG[index] += g;

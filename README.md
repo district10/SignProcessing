@@ -1,5 +1,7 @@
 # SignProcessing2
 
+看我的博客：[用 CvANN_MLP 进行路牌判别](file:///D:/tzx/git/blog/publish/post-0072-cvann-mlp.html)。
+
 ## 下载已经编译好的程序
 
 应该能够在 Windows 上直接运行，下载链接见 [【下载二进制】](https://github.com/district10/SignProcessing/issues/1)。

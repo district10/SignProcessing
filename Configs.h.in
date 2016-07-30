@@ -8,6 +8,6 @@
 #define CROPPING_SUFFIX                     ( "bmp"                             )
 #define STANDARD_SIZE                       ( 24                                )
 #define IMGSIZE                             ( 24                                )
-#define FEATURENUM                          ( 24*(3+3)+ 3 + 12                  )
+#define FEATURENUM                          ( 24*(3+3)+ 3 + 4*3                 )
 
 #endif  // CONFIGS_H
