@@ -1,0 +1,6 @@
+add_subdirectory( MLP )
+add_subdirectory( SignClassifier )
+add_subdirectory( SignCutter )
+add_subdirectory( SignLogger )
+add_subdirectory( SignTransformer )
+add_subdirectory( Utils )

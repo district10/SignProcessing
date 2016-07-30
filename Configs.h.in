@@ -1,0 +1,13 @@
+#ifndef CONFIGS_H
+#define CONFIGS_H
+
+#define CMAKE_SOURCE_DIR                    ( "@CMAKE_SOURCE_DIR@"              )
+#define DEFAULT_INPUT_IMAGE_DIR             ( "@CMAKE_SOURCE_DIR@/data/input"   )
+#define DEFAULT_OUTPUT_IMAGE_DIR            ( "@CMAKE_SOURCE_DIR@/data/output"  )
+#define CROPPING_PREFIX                     ( "cutted-out"                      )
+#define CROPPING_SUFFIX                     ( "bmp"                             )
+#define STANDARD_SIZE                       ( 24                                )
+#define IMGSIZE                             ( 24                                )
+#define FEATURENUM                          ( 24*(3+3)+ 3 + 12                  )
+
+#endif  // CONFIGS_H
