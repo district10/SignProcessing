@@ -1,9 +1,10 @@
+**【[qt4cv3vs2015](https://github.com/district10/SignProcessing/tree/qt4cv3vs2015) 分支包含了编译和使用说明。请先从那里开始。】**
+
+---
+
 # SignProcessing
 
 利用 Qt、OpenCV 程序库，进行路牌的扣取、分类和识别。使用 ANN::MLP（神经网络 - 多层感知器）方法。
-
-[qt4cv3vs2015](https://github.com/district10/SignProcessing/tree/qt4cv3vs2015) 分支包含了编译和使用说明。
-请先从那里开始。
 
 ## 说明文档
 
@@ -54,7 +55,7 @@ PATH | `%PATH%;%QTDIR%\bin;%OpenCV%\x64\vc10\bin;`
     + GUO Chen
     + LIAO YanYan
     + LIU Xuan
-    + TANG ZhiXiong
+    + **TANG ZhiXiong**
     + WANG JinYi
     + ZHANG Yuan
     + ZHAO PengCheng
@@ -62,6 +63,7 @@ PATH | `%PATH%;%QTDIR%\bin;%OpenCV%\x64\vc10\bin;`
 ## Acknowledgements
 
 感谢 LI YinXuan 师姐的参考程序。
+感谢 Zhao PengCheng 的 feature 的设计方案。
 
 ## @GitHub
 
