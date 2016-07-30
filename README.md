@@ -2,17 +2,17 @@
 
 ## 下载已经编译好的程序
 
-应该能够在 Windows 上直接运行，下载链接见【下载二进制】(https://github.com/district10/SignProcessing/issues/1)。
+应该能够在 Windows 上直接运行，下载链接见 [【下载二进制】](https://github.com/district10/SignProcessing/issues/1)。
 
 ## 如何使用
 
-见【如何使用】(https://github.com/district10/SignProcessing/issues/2)。
+见 [【如何使用】](https://github.com/district10/SignProcessing/issues/2)。
 
 ---
 
 ## 下载源码
 
-[【qt4cv3vs2015 分支压缩包】](https://github.com/district10/SignProcessing/archive/qt4cv3vs2015.zip)
+[【qt4cv3vs2015 分支源码压缩包】](https://github.com/district10/SignProcessing/archive/qt4cv3vs2015.zip)
 
 ## 下载测试数据
 
