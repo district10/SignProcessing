@@ -12,9 +12,10 @@
 
 ---
 
-## 下载源码
+## 下载源码并编译
 
-[【qt4cv3vs2015 分支源码压缩包】](https://github.com/district10/SignProcessing/archive/qt4cv3vs2015.zip)
+-   [【qt4cv3vs2015 分支源码压缩包】](https://github.com/district10/SignProcessing/archive/qt4cv3vs2015.zip)
+-   配置 VS2015，Qt4，OpenCV3，见：[代码编译 · Issue #3 · district10/SignProcessing](https://github.com/district10/SignProcessing/issues/3) :smile:
 
 ## 下载测试数据
 
