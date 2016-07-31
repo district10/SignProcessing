@@ -46,7 +46,6 @@ include_directories( ${OpenCV_INCLUDE_DIRS} )
 # Qt4
 find_package( Qt4 REQUIRED )
 include( ${QT_USE_FILE} )
-file( GLOB GLOB_QRCS_RAW *.qrc )
 
 # include them all
 include_directories( ${CMAKE_SOURCE_DIR} )
@@ -61,6 +60,8 @@ include_directories( ${CMAKE_BINARY_DIR}/src/SignCutter )
 include_directories( ${CMAKE_SOURCE_DIR}/src/SignCutter )
 include_directories( ${CMAKE_BINARY_DIR}/src/SignLogger )
 include_directories( ${CMAKE_SOURCE_DIR}/src/SignLogger )
+include_directories( ${CMAKE_BINARY_DIR}/src/SignProcessor )
+include_directories( ${CMAKE_SOURCE_DIR}/src/SignProcessor )
 include_directories( ${CMAKE_BINARY_DIR}/src/SignTransformer )
 include_directories( ${CMAKE_SOURCE_DIR}/src/SignTransformer )
 include_directories( ${CMAKE_BINARY_DIR}/src/Utils )
@@ -79,6 +80,7 @@ set( EXECUTABLE_OUTPUT_PATH
     PATH
     "Single directory for all executables" )
 
+set( MODELS_QRC "${CMAKE_SOURCE_DIR}/models.qrc" )
 configure_file(
     "${PROJECT_SOURCE_DIR}/Configs.h.in"
     "${PROJECT_BINARY_DIR}/Configs.h" )

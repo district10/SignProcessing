@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>data/output/1.xml</file>
+        <file>data/output/2.xml</file>
+        <file>data/output/3.xml</file>
+        <file>data/output/4.xml</file>
+        <file>data/output/5.xml</file>
+        <file>data/output/demo.bmp</file>
+    </qresource>
+</RCC>

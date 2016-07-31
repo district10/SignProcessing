@@ -20,6 +20,7 @@ public:
     void loadCSV( const QString &csv );
     void train();
     QList<QPair<QString, bool> > predictImages( const QStringList &images );
+    bool predictFeatureMat( const cv::Mat &featureMat );
 
     static QStringList loadImagePaths( const QString &path );
 

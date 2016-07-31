@@ -1,15 +1,16 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <QtGui>
-#include <QStringList>
-#include <QChar>
-
 namespace cv {
     class Mat;
 }
 
 class QImage;
+class QChar;
+class QString;
+class QStringList;
+class QWidget;
+class QDir;
 
 class Utils
 {
@@ -25,12 +26,13 @@ public:
     static QString basename( const QString &path );
     static QString basenameWithoutExt( const QString &path );
     static QString dirname( const QString &path );
-    static void sleep( const quint16 &t );
+    static void sleep( int t );
 
     static QImage cvMat2QImage( const cv::Mat &mat );
     static cv::Mat QImage2cvMat( const QImage &image );
 
     static bool img2feature( const char *filePath, float *feature );
+    static bool mat2feature( const cv::Mat &mat, float *feature );
 
 private:
     static const QChar sep;

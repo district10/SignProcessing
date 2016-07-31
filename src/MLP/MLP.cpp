@@ -5,6 +5,8 @@
 #include "Utils.h"
 #include "Configs.h"
 
+#include <QDebug>
+
 using namespace std;
 
 MLP::MLP()
@@ -92,6 +94,14 @@ void MLP::train()
 
     delete[] features;
     delete[] flags;
+}
+
+bool MLP::predictFeatureMat( const cv::Mat &featureMat )
+{
+    cv::Mat result( 1, 1, CV_32FC1 );
+    mlp->predict( featureMat, result );
+    float *p = result.ptr<float>(0);
+    return *p > 0;
 }
 
 QList<QPair<QString, bool> > MLP::predictImages( const QStringList &images )

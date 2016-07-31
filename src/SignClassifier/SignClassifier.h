@@ -2,6 +2,7 @@
 #define SIGNCLASSIFIER_H
 
 #include <QDialog>
+#include <QFileDialog>
 #include <QStandardItemModel>
 #include <opencv2/core.hpp>
 #include <opencv2/ml.hpp>

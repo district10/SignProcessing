@@ -2,6 +2,10 @@
 #include "Configs.h"
 #include <iostream>
 
+#include <QtGui>
+#include <QStringList>
+#include <QChar>
+
 #include <opencv2/core.hpp>
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc.hpp>
@@ -191,7 +195,7 @@ QString Utils::dirname(const QString &path)
     return dir;
 }
 
-void Utils::sleep( const quint16 &t )
+void Utils::sleep( int t )
 {
     QTime dieTime = QTime::currentTime().addMSecs(t);
     while( QTime::currentTime() < dieTime ) {
@@ -264,9 +268,19 @@ cv::Mat Utils::QImage2cvMat( const QImage &image )
 
 bool Utils::img2feature( const char *filePath, float *feature )
 {
-    Mat img = imread( filePath, cv::IMREAD_COLOR );
-    if ( img.rows != IMGSIZE || img.cols != IMGSIZE ) {
-        qDebug() << __FUNCDNAME__ << "failed, because of wrong dim," << "\tfilepath:" << filePath;
+    Mat src = imread( filePath, cv::IMREAD_COLOR );
+    if ( src.empty() ) {
+        qDebug() << __FUNCDNAME__ << ",\tempty image:" << "\tfilepath:" << filePath;
+    }
+
+    Mat mat;
+    resize( src, mat, cv::Size( IMGSIZE, IMGSIZE ), 0.0, 0.0, cv::INTER_AREA ); // interpolation method
+    return mat2feature( mat, feature );
+}
+
+bool Utils::mat2feature( const cv::Mat &mat, float *feature )
+{
+    if ( mat.empty() || mat.cols != IMGSIZE || mat.rows != IMGSIZE || mat.channels() != 3 ) {
         return false;
     }
 
@@ -278,9 +292,9 @@ bool Utils::img2feature( const char *filePath, float *feature )
     for( int i = 0; i < IMGSIZE; ++i ) {
         for( int j = 0; j < IMGSIZE; ++j ) {
 
-            int b = img.at<cv::Vec3b>(i,j)[0];
-            int g = img.at<cv::Vec3b>(i,j)[1];
-            int r = img.at<cv::Vec3b>(i,j)[2];
+            int b = mat.at<cv::Vec3b>(i,j)[0];
+            int g = mat.at<cv::Vec3b>(i,j)[1];
+            int r = mat.at<cv::Vec3b>(i,j)[2];
 
             allCountR += r;
             allCountG += g;

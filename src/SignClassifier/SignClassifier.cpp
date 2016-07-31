@@ -4,6 +4,7 @@
 #include "Configs.h"
 #include <QDebug>
 #include <QMessageBox>
+#include <QProgressDialog>
 
 static QString TextSign     = QObject::tr( "Pos" );
 static QString TextNotSign  = QObject::tr( "Neg" );
