@@ -5,6 +5,9 @@
 #include "Configs.h"
 #include <QString>
 #include <QDateTime>
+#include <QDebug>
+#include <QDir>
+#include <QFileDialog>
 
 const QString SignTransformer::filter =  
     QObject::tr( "images (*.bmp *.png *.jpg *.jpeg *.png *.gif *.tif *.tiff)" );

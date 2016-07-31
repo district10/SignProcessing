@@ -5,6 +5,5 @@
         <file>data/output/3.xml</file>
         <file>data/output/4.xml</file>
         <file>data/output/5.xml</file>
-        <file>data/output/demo.bmp</file>
     </qresource>
 </RCC>
