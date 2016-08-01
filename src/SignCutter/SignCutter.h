@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <QModelIndex>
-#include <Qstringlistmodel>
+#include <QStringListModel>
 #include <QRectF>
 #include <QModelIndex>
 #include <QGraphicsScene>
@@ -48,7 +48,7 @@ private:
     QString  outdirSgn;
     QString  outdirPos;
     QString  outdirNeg;
-    
+
     QGraphicsScene *viewSceneWorkspace;
     QGraphicsScene *viewSceneThumbnail;
     QGraphicsScene *viewSceneSelection;

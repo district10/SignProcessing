@@ -1,6 +1,7 @@
 #include "MLP.h"
 
 #include <iostream>
+#include <cstdio>
 #include <fstream>
 #include "Utils.h"
 #include "Configs.h"
@@ -42,14 +43,14 @@ void MLP::loadCSV( const QString &csv )
     QString basedir = Utils::dirname(csv);
     qDebug() << "basedir : " << basedir;
 
-    ifstream data( csv.toStdString() );
+    ifstream data( qPrintable(csv) );
     string line;
     if ( !data.is_open() ) { return; }
     while ( getline( data, line ) ) {
         QStringList pair = QString(line.c_str()).split(",");
         if ( pair.length() == 2 ) {
             int flag = -1;
-            sscanf_s( qPrintable(pair.at(1)), "%d", &flag );
+            sscanf( qPrintable(pair.at(1)), "%d", &flag );
             switch (flag) {
             case 0: neg << (basedir +"/"+ pair.at(0)); break;
             case 1: pos << (basedir +"/"+ pair.at(0)); break;
@@ -126,7 +127,7 @@ QStringList MLP::loadImagePaths( const QString &path )
     QString basedir = Utils::dirname( path );
 
     QStringList output;
-    ifstream data( path.toStdString() );
+    ifstream data( qPrintable(path) );
     string line;
     if ( !data.is_open() ) { return QStringList(); }
     while ( getline( data, line ) ) {

@@ -9,7 +9,7 @@
 #include <QDir>
 #include <QFileDialog>
 
-const QString SignTransformer::filter =  
+const QString SignTransformer::filter =
     QObject::tr( "images (*.bmp *.png *.jpg *.jpeg *.png *.gif *.tif *.tiff)" );
 QString SignTransformer::_demoPath;
 
@@ -91,7 +91,7 @@ static QString getSuffix( int i ) {
     return suffix;
 }
 
-static void drawRect( cv::Mat &mat, const cv::RotatedRect &rr, cv:: Scalar &color, int thickness = 1 ) {
+static void drawRect( cv::Mat &mat, const cv::RotatedRect &rr, const cv:: Scalar &color, int thickness = 1 ) {
     cv::Point2f rect_points[4];
     rr.points( rect_points );
     for( int j = 0; j < 4; ++j ) {
@@ -100,10 +100,10 @@ static void drawRect( cv::Mat &mat, const cv::RotatedRect &rr, cv:: Scalar &colo
 }
 
 QStringList SignTransformer::genPositives( const int &idx,
-                                           const QString &path, 
+                                           const QString &path,
                                            double x, double y,
-                                           double dx, double dy, 
-                                           const QString &outdir, 
+                                           double dx, double dy,
+                                           const QString &outdir,
                                            const QStringList &outs,
                                            const QList<int> &angles,
                                            const QList<int> &shiftsX,
@@ -142,7 +142,7 @@ QStringList SignTransformer::genPositives( const int &idx,
     mt[2].rr = &rr2;
 
     cv::Mat tmp( rr0.size, mt[0].m->type() );
-    QString prefix = QString().sprintf( "%s/%04d-%s", qPrintable( outdir ), idx, 
+    QString prefix = QString().sprintf( "%s/%04d-%s", qPrintable( outdir ), idx,
                                         qPrintable( Utils::basenameWithoutExt(path) ) );
     QString demoPath = QString( "%1/sgn/%2-demo.bmp" ).arg( Utils::dirname(outdir) )
                                                       .arg( Utils::basenameWithoutExt(path) );
@@ -153,9 +153,9 @@ QStringList SignTransformer::genPositives( const int &idx,
 
     // base image, upside down, or left right mirrored
     for ( int i = 0; i < 3; ++i ) {
-        QString cur = 
-            QString().sprintf( "%s-%s.bmp", 
-                               qPrintable( prefix ), 
+        QString cur =
+            QString().sprintf( "%s-%s.bmp",
+                               qPrintable( prefix ),
                                qPrintable( getSuffix(i) ) );
         if ( outs.contains( cur ) || dsts.contains( cur ) ) {
             continue;
@@ -170,12 +170,12 @@ QStringList SignTransformer::genPositives( const int &idx,
             qDebug() << "error writing" << cur;
         }
     }
-    
+
     // rotation
     foreach( const int &angle, angles ) {
         for ( int i = 0; i < 3; ++i ) {
-            QString cur = 
-                QString().sprintf( "%s-%s-r%03d.bmp", 
+            QString cur =
+                QString().sprintf( "%s-%s-r%03d.bmp",
                                    qPrintable( prefix ),
                                    qPrintable( getSuffix(i) ),
                                    angle );
@@ -207,8 +207,8 @@ QStringList SignTransformer::genPositives( const int &idx,
 
                     int xx = (double)sx / 100.0 * imgW;
                     int yy = (double)sy / 100.0 * imgH;
-                    QString cur = 
-                        QString().sprintf( "%s-shift-sx%03d-sy%03d.bmp", 
+                    QString cur =
+                        QString().sprintf( "%s-shift-sx%03d-sy%03d.bmp",
                                            qPrintable( prefix ),
                                            xx*fx, yy*fy );
                     if ( outs.contains( cur ) || dsts.contains( cur ) ) {
@@ -220,7 +220,7 @@ QStringList SignTransformer::genPositives( const int &idx,
                     cv::Mat tmp( rr.size, img.type() );
                     ThirdPartyUtils::getRotRectImg( rr, img, tmp );
                     cv::resize( tmp, dst, cv::Size( STANDARD_SIZE, STANDARD_SIZE ) );
-                    drawRect( demo, rr, posColor ); 
+                    drawRect( demo, rr, posColor );
                     if ( cv::imwrite( cur.toStdString(), dst ) ) {
                         dsts << cur;
                     } else {
@@ -231,7 +231,7 @@ QStringList SignTransformer::genPositives( const int &idx,
             }
         }
     }
-    
+
     mt[0].rr->angle = 0;
     drawRect( demo, *mt[0].rr, cv::Scalar( 0, 0, 255 ), 5 );
     if ( cv::imwrite( demoPath.toStdString(), demo ) ) {
@@ -243,11 +243,11 @@ QStringList SignTransformer::genPositives( const int &idx,
     return dsts;
 }
 
-QStringList SignTransformer::genNegatives( const int &idx, 
-                                           const QString &path, 
+QStringList SignTransformer::genNegatives( const int &idx,
+                                           const QString &path,
                                            double x, double y,
-                                           double dx, double dy, 
-                                           const QString &outdir, 
+                                           double dx, double dy,
+                                           const QString &outdir,
                                            const QStringList &outs )
 {
     static cv::Scalar negColor( 255, 0, 0 );
@@ -280,7 +280,7 @@ QStringList SignTransformer::genNegatives( const int &idx,
 
     cv::Mat dst;
 
-    QString prefix = QString().sprintf( "%s/%04d-%s-rand", qPrintable( outdir ), idx, 
+    QString prefix = QString().sprintf( "%s/%04d-%s-rand", qPrintable( outdir ), idx,
                                         qPrintable( Utils::basenameWithoutExt(path) ) );
     QString demoPath = QString( "%1/sgn/%2-demo.bmp" ).arg( Utils::dirname(outdir) )
                                                   .arg( Utils::basenameWithoutExt(path) );
@@ -303,7 +303,7 @@ QStringList SignTransformer::genNegatives( const int &idx,
             continue;
         }
 
-        QString cur = QString().sprintf( "%s-cx%04d-cy%04d-r%03d.bmp", 
+        QString cur = QString().sprintf( "%s-cx%04d-cy%04d-r%03d.bmp",
                                          qPrintable( prefix ),
                                          cx+sw, cy+sh, ra );
         if ( outs.contains( cur ) || dsts.contains( cur ) ) {
@@ -366,10 +366,10 @@ void SignTransformer::on_listView_outs_clicked(const QModelIndex &index)
 
 void SignTransformer::on_pushButton_out_dir_clicked()
 {
-    outdir = QFileDialog::getExistingDirectory( this, 
+    outdir = QFileDialog::getExistingDirectory( this,
                                                 tr( "Save File Directory" ),
                                                 DEFAULT_OUTPUT_IMAGE_DIR,
-                                                QFileDialog::ShowDirsOnly | 
+                                                QFileDialog::ShowDirsOnly |
                                                 QFileDialog::DontResolveSymlinks );
     ui->lineEdit_outdir->setText( outdir );
 }
@@ -393,7 +393,7 @@ Twin::Twin(const QString &path, const QString &dir)
 QString Twin::save( QString suffix /* = "" */ )
 {
     if ( !valid ) { return ""; }
-    QString outPath = 
+    QString outPath =
         QString( "%1/%2-%3%4.bmp" ).arg( outDir )
                                    .arg( QFileInfo( inPath ).completeBaseName() )
                                    .arg( log ).arg( suffix );
@@ -433,7 +433,7 @@ void Twin::rotate(int angle0 /* = 0 */)
 
 void Twin::translate(double wp, double hp)
 {
-    cv::Mat trans( 2, 3, CV_32FC1 );  
+    cv::Mat trans( 2, 3, CV_32FC1 );
     trans.at<double>( 0, 0 ) = 1.0;
     trans.at<double>( 0, 1 ) = 0.0;
     trans.at<double>( 1, 0 ) = 0.0;
@@ -441,7 +441,7 @@ void Twin::translate(double wp, double hp)
     trans.at<double>( 0, 2 ) = wp; //  * m[src()].size().width;
     trans.at<double>( 1, 2 ) = hp; //  * m[src()].size().height;
     cv::warpAffine( m[src()], m[dst()], trans, m[dst()].size() );
-    
+
     /*
     int dx = wp * m[src()].cols;
     int dy = wp * m[src()].rows;

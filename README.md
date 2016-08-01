@@ -4,6 +4,10 @@
 
 ![](http://whudoc.qiniudn.com/2016/SignProcessorDemo_2016-07-31_16-21-58.png)
 
+刚才 fix 了几个错误，现在在 Ubuntu 下也跑起来了：
+
+![](http://whudoc.qiniudn.com/2016/2016-08-01-203526_1366x768_scrot.png)
+
 ## 下载已经编译好的程序
 
 应该能够在 Windows 上直接运行，下载链接见 [【下载二进制】](https://github.com/district10/SignProcessing/issues/1)。

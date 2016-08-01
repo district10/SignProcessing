@@ -1,4 +1,3 @@
-add_subdirectory( CmdBatchTrainDemo )
 add_subdirectory( MLPDemo )
 add_subdirectory( SignClassifierDemo )
 add_subdirectory( SignCutterDemo )

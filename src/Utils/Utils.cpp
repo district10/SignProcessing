@@ -270,7 +270,7 @@ bool Utils::img2feature( const char *filePath, float *feature )
 {
     Mat src = imread( filePath, cv::IMREAD_COLOR );
     if ( src.empty() ) {
-        qDebug() << __FUNCDNAME__ << ",\tempty image:" << "\tfilepath:" << filePath;
+        qDebug() << "Utils::img2feature troubled, empty image:" << "\tfilepath:" << filePath;
     }
 
     Mat mat;

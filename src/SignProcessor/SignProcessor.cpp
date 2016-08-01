@@ -50,7 +50,7 @@ SignProcessor::SignProcessor(QWidget *parent)
     view->setViewMode( QListView::IconMode );
     view->setIconSize( QSize( 24, 24 ) );
     view->setUniformItemSizes ( true );
-    view->setSpacing( 3 );
+    view->setSpacing( 5 );
     view->setResizeMode ( QListView::Adjust );
     view->setWordWrap ( true );
     view->setEditTriggers( QListView::NoEditTriggers );
