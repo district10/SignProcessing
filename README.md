@@ -6,7 +6,7 @@
 
 刚才 fix 了几个错误，现在在 Ubuntu 下也跑起来了：
 
-![](http://whudoc.qiniudn.com/2016/2016-08-01-203526_1366x768_scrot.png)
+![](http://whudoc.qiniudn.com/2016/2016-08-01-204355_1366x768_scrot.png)
 
 ## 下载已经编译好的程序
 
