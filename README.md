@@ -6,26 +6,6 @@
 
 利用 Qt、OpenCV 程序库，进行路牌的扣取、分类和识别。使用 ANN::MLP（神经网络 - 多层感知器）方法。
 
-## 说明文档
-
-PDF：<http://gnat.qiniudn.com/homework/SignProcessing_README.pdf>
-
-![](http://gnat.qiniudn.com/homework/SignProcessing_demo_b.jpg)
-
-![](http://gnat.qiniudn.com/homework/SignProcessing_demo_a.bmp)
-
-![](http://whudoc.qiniudn.com/2016/annlau-ppt.png)
-
-## 模块
-
-包括：
-
-* SignCutter（路牌提取）
-* SignTransformer（直接对切片区域变换：平移、镜像、旋转）
-* SignLogger（记录切片区域，在原图上变换，效果更好）
-* SignClassifier（分类） &rarr; 相关笔记：[OpenCV::CvANN_MLP](http://tangzx.qiniudn.com/post-0072-cvann-mlp.html)
-* etc.
-
 ## Binary Release
 
 动态链接 OpenCV 和 Qt，如果没有配置安装 Qt4 和 OpenCV2，
@@ -64,7 +44,3 @@ PATH | `%PATH%;%QTDIR%\bin;%OpenCV%\x64\vc10\bin;`
 
 感谢 LI YinXuan 师姐的参考程序。
 感谢 Zhao PengCheng 的 feature 的设计方案。
-
-## @GitHub
-
-[district10/SignProcessing](https://github.com/district10/SignProcessing)
