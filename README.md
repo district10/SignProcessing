@@ -38,3 +38,31 @@
 -   [8.7z](http://gnat.qiniudn.com/sczip/8.7z) 3.1M
 
 放到 `data/input` 文件夹，然后把它们【解压到当前文件夹】。
+
+---
+
+## Envs
+
+Env | Env Value
+--- | ---
+OpenCV | `C:\dev\OpenCV\build`
+OpenCV_Dir | `%OpenCV%`
+QTDIR | `C:\Qt\qt-4.8.6-x64-msvc2010\qt-4.8.6-x64-msvc2010`
+PATH | `%PATH%;%QTDIR%\bin;%OpenCV%\x64\vc10\bin;`
+
+## 成员
+
+* 组长：ZHAO PengCheng
+* 成员：（拼音排序）
+    + GUO Chen
+    + LIAO YanYan
+    + LIU Xuan
+    + **TANG ZhiXiong**
+    + WANG JinYi
+    + ZHANG Yuan
+    + ZHAO PengCheng
+
+## Acknowledgements
+
+感谢 LI YinXuan 师姐的参考程序。
+感谢 Zhao PengCheng 的 feature 的设计方案。
